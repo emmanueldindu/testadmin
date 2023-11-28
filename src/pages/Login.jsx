@@ -24,7 +24,7 @@ const navigate = useNavigate()
 
   const handleCLick = () => {
     axios
-      .post("https://3.21.139.203/new-admin/v1/auth/login", data)
+      .post("https://www.globalpayng.com/new-admin/v1/auth/login", data)
       .then((response) => {
         console.log(response)
         const token = response.data.data.token

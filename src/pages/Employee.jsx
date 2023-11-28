@@ -48,7 +48,7 @@ function Orders() {
  
     axios
       .get(
-        'https://3.21.139.203/new-admin/v1/settlement/?subscribed=false',
+        'https://www.globalpayng.com/new-admin/v1/settlement/?subscribed=false',
         {
           headers: {
             Authorization: `Bearer ${token}`,

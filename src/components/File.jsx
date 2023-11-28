@@ -20,7 +20,7 @@ const FileUploader = () => {
       formData.append('file', file);
 
       const response = await axios.post(
-        'https://3.21.139.203/new-admin/v1/users',
+        'https://www.globalpayng.com/new-admin/v1/users',
         formData,
         {
           headers: {
