@@ -140,7 +140,7 @@ function Orders() {
       .put(
         'https://www.globalpayng.com/new-admin/v1/settlement/',
         {
-          status: true,
+          status: false,
           wallets: selectedItems,
         },
         {
