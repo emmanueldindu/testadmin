@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { useState } from 'react';
+
 import { useDropzone } from 'react-dropzone';
 import { toast, Toaster } from 'react-hot-toast';
 import axios from 'axios';

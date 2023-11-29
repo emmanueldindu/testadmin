@@ -1,37 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { GoDot } from "react-icons/go";
-import { Stacked, Pie, Button, SparkLine } from "../components";
-import { useStateContext } from "../contexts/ContextProvider";
-import {
-  earningData,
-  SparklineAreaData,
-  ecomPieChartData,
-  recentTransactions,
-} from "../data/dummy";
-import { BsCurrencyDollar } from "react-icons/bs";
-import CopyToClipboard from "../components/CopytoClipboard";
-import { DropDownListComponent } from "@syncfusion/ej2-react-dropdowns";
-import Budget from "../assets/budget.png";
-import Transfer from "../assets/transfer.png";
-import PieChart from "../components/PieChart";
-import HomeIcon from "../assets/icon.svg";
+
+
+
 import Upload from "../assets/upload.png";
-import axios from "axios";
-import { FaUpload } from "react-icons/fa";
-import {
-  FaCheckCircle,
-  FaCreditCard,
-  FaExchangeAlt,
-  FaExclamationTriangle,
-  FaMoneyBill,
-  FaShoppingCart,
-  FaTerminal,
-  FaUsers,
-  FaWallet,
-} from "react-icons/fa";
-import { FiCreditCard } from "react-icons/fi";
-import { MdPieChart, MdSwapHoriz } from "react-icons/md";
-import BarChart from "../components/BarChart";
+
 import "font-awesome/css/font-awesome.min.css";
 import FileUploader from "../components/File";
 

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { DateInput, Header } from "../components";
+import {  Header } from "../components";
 import {
   GridComponent,
   Resize,
@@ -15,12 +15,12 @@ import {
   PdfExport,
   Inject,
 } from "@syncfusion/ej2-react-grids";
-import { ordersData, ordersGrid } from "../data/dummy";
+// import { ordersData, ordersGrid } from "../data/dummy";
 import "@syncfusion/ej2-react-grids/styles/material.css";
-import jsPDF from "jspdf";
+
 import "jspdf-autotable";
 import axios from "axios";
-import DateRange from '../components/DateRange';
+
 
 function Orders() {
   const token = localStorage.getItem("token");
@@ -51,7 +51,7 @@ function Orders() {
   useEffect(() => {
    
     const apiUrl =
-      'https://3.21.139.203/new-admin/v1/transactions/eod'
+      'https://www.globalpayng.com/new-admin/v1/transactions/eod'
 
     axios
       .get(apiUrl, {

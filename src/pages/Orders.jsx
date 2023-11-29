@@ -6,7 +6,7 @@ import {
   Search,
   Toolbar,
   ColumnDirective,
-  Selection,
+  
   ColumnsDirective,
   Sort,
   ContextMenu,
@@ -16,15 +16,13 @@ import {
   PdfExport,
   Inject,
 } from "@syncfusion/ej2-react-grids";
-import { ordersData, ordersGrid } from "../data/dummy";
+
 import "@syncfusion/ej2-react-grids/styles/material.css";
-import DateRange from "../components/DateRange";
-import jsPDF from "jspdf";
+
 import "jspdf-autotable";
-import Pdf from "../components/Pdf";
-import { Button } from "@syncfusion/ej2-react-buttons";
+
 import axios from "axios";
-import { FaCheck } from 'react-icons/fa';
+
 import { CheckBoxComponent } from '@syncfusion/ej2-react-buttons';
 
 
@@ -36,7 +34,7 @@ function Orders() {
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
   };
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const token = localStorage.getItem("token");
 
@@ -48,7 +46,7 @@ function Orders() {
  
     axios
       .get(
-        'https://3.21.139.203/new-admin/v1/settlement/?subscribed=true',
+        'https://www.globalpayng.com/new-admin/v1/settlement/?subscribed=true',
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -140,9 +138,9 @@ function Orders() {
 
     axios
       .put(
-        'https://3.21.139.203/new-admin/v1/settlement/',
+        'https://www.globalpayng.com/new-admin/v1/settlement/',
         {
-          status: false,
+          status: true,
           wallets: selectedItems,
         },
         {
@@ -213,65 +211,68 @@ function Orders() {
     });
   };
 
+
+
+
+
   return (
     <div
     className="m-2 pt-20 md:m-10 p-2 md:p-10 bg-white rounded-3xl overflow-x-scroll xl:w-[1000px] xl:mx-auto "
     style={{ overflowX: "auto" }}
 
   >
-    <Header category="View State" title="State" />
+    <Header category="Suscribed Users" title="Auto Settlement" />
 
 
     <div className="overflow-x-scroll" style={{ overflowX: "auto" }}>
-      <GridComponent
-        toolbar={["Search"]}
-        id="gridcomp"
-       
-        dataSource={data}
-        allowPaging
-        pageSettings={{ pageSize: 100 }}
-        allowSorting
-        allowPdfExport={true}
-        pdfExportFileName='TransactionReport'
-        pdfExportPageOrientation='Landscape'
-        pdfExportPageSize='A3'
-        allowExcelExport={true}
-        excelExportFileName='TransactionReport'
-        
-        
-      >
-          <ColumnsDirective>
-            
-          <ColumnDirective
-    headerText=''
-    width='50'
-    template={(rowData) => {
-      return <CheckBoxComponent
-        checked={rowData.isChecked}
-        change={() => handleItemSelect(rowData.walletid)}
-      />;
-    }}
-/>
+ 
 
-          {tableGrid.map((item, index) => (
-            <ColumnDirective key={index} {...item} />
-            
+<div className="container mx-auto">
+      <table className="  w-[2700px] bg-white border border-gray-300">
+        <thead>
+              <tr className="text-xs items-center flex-row">
+              <th className="py-2 px-4 border-b">Select</th>
+            <th className="py-2 px-4 border-b w-[300px]">Fullname</th>
+                <th className="py-2 px-4 border-b w-auto ">Business Name</th>
+                 <th className="py-2 px-4 border-b">Username</th>
+                <th className="py-2 px-4 border-b">wallet Id</th>
+                <th className="py-2 px-4 border-b">Auto settlement</th>
+                <th className="py-2 px-4 border-b">Bank Name</th>
+                 <th className="py-2 px-4 border-b">Account Number</th>
+                <th className="py-2 px-4 border-b">Phone number</th>
+                 <th className="py-2 px-4 border-b">Last Settled</th>
+                {/* Add more header columns as needed */}
+          </tr>
+        </thead>
+        <tbody className="text-xs items-center text-center justify-center mx-auto">
+          {data && data.map(item => (
+            <tr key={item.walletid}>
+                            <td className="py-2 px-4 border-b">
+                <input
+                  type="checkbox"
+                  checked={item.isChecked}
+                  onChange={() => handleItemSelect(item.walletid)}
+                />
+              </td>
+              <td className="py-2 px-4 border-b">{item.fullname}</td>
+              <td className="py-2 px-4 border-b flex-row w-auto">{item.businessname}</td>
+              <td className="py-2 px-4 border-b">{item.username}</td>
+              <td className="py-2 px-4 border-b text-center">{item.walletid}</td>
+              <td className="py-2 px-4 border-b text-center">{item.auto_settlement}</td>
+              <td className="py-2 px-4 border-b items-center justify-center text-center">{item.bankname}</td>
+              <td className="py-2 px-4 border-b">{item.accountnumber}</td>
+              <td className="py-2 px-4 border-b">{item.phonenumber}</td>
+              <td className="py-2 px-4 border-b">{item.last_settled}</td>
+
+          
+            </tr>
           ))}
-        </ColumnsDirective>
-        <Inject
-          services={[
-            Sort,
-            Resize,
-            ContextMenu,
-            Filter,
-            Page,
-            ExcelExport,
-            Search,
-            Toolbar,
-            PdfExport,
-          ]}
-        />
-      </GridComponent>
+        </tbody>
+      </table>
+    </div>
+
+
+        
       </div>
       
       <div className="w-full flex justify-end p-4 ">
@@ -285,3 +286,7 @@ function Orders() {
 }
 
 export default Orders;
+
+
+
+  
