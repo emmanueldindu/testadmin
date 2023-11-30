@@ -136,7 +136,7 @@ function Orders() {
       .then((response) => {
         if (response.status === 200) {
           toast.success('User(s) unsubscribed successfully', {
-            position: 'top-right',
+            position: 'bottom-center',
             duration: 10000
           });
         }

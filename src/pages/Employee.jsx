@@ -129,7 +129,7 @@ function Orders() {
 
         if (response.status === 200) {
           toast.success('User(s) Subscribed successfully', {
-            position: 'top-right',
+            position: 'bottom-center',
             duration: 10000
           });
         }
