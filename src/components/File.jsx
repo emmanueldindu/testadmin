@@ -38,7 +38,7 @@ const FileUploader = () => {
         // Show a success toast with a custom duration (e.g., 3000 milliseconds)
         toast.success('Upload successful!', {
           position: 'top-right',
-          duration: 3000, // Set the duration in milliseconds
+          duration: 5000, // Set the duration in milliseconds
         });
       } else {
         throw new Error('Upload failed');

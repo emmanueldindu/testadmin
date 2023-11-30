@@ -196,45 +196,17 @@ function Orders() {
   //     textAlign: "Center",
   //     width: "150",
   //   },
-  //   {
-  //     field: "year",
-  //     headerText: "year",
-  //     textAlign: "Center",
-  //     width: "150",
-  //   },
-  //   {
-  //     field: "software_version",
-  //     headerText: "Software Version",
-  //     textAlign: "Center",
-  //     width: "150",
-  //   },
-  // ];
+ 
   return (
     <div
       className="m-2 pt-20 md:m-10 p-2 md:p-10 bg-white rounded-3xl overflow-x-scroll xl:w-[1000px] xl:mx-auto "
       style={{ overflowX: "auto" }}
 
     >
-      <Header category="View State" title="State" />
-      {/* <div className="mx-auto p-4">
-        <DateInput />
-      </div> */}
-{/* 
-<div className="mx-auto p-4">
-        
-         
-    <DateRange
-          selectedDateRange={selectedDateRange}
-          onDateRangeChange={handleDateRangeChange}
-        />
-      </div> */}
+      <Header category="" title="Terminal EOD" />
+  
 
-
-      <div className='w-[150px] gap-x-2 flex justify-between relative p-2'>
-  <button className='w-12 h-8 text-sm rounded-md bg-blue-400 text-white' onClick={exportToPDF}>PDF</button>
-  <button className='w-12 h-8 rounded-md text-sm bg-blue-400 text-white' onClick={exportToExcel}> Excel</button>
-  <button  className='w-12 h-8 rounded-md text-sm bg-blue-400 text-white' onClick={printTable}>Print</button>
-      </div>
+  
 
       {/* <button  className="h-6 bg-red-500 w-7"onClick={exportToExcel}>Export to Excel</button> */}
       {/* <button className='w-[120px] h-3 bg-yellow-500' onClick={exportToPDF}>Export to PDF</button> */}

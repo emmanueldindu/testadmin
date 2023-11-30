@@ -1,29 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
-import { DateInput, Header } from "../components";
-import {
-  GridComponent,
-  Resize,
-  Search,
-  Toolbar,
-  ColumnDirective,
-  
-  ColumnsDirective,
-  Sort,
-  ContextMenu,
-  Filter,
-  Page,
-  ExcelExport,
-  PdfExport,
-  Inject,
-} from "@syncfusion/ej2-react-grids";
+import { Header } from "../components";
+
 
 import "@syncfusion/ej2-react-grids/styles/material.css";
 
 import "jspdf-autotable";
 
 import axios from "axios";
-
-import { CheckBoxComponent } from '@syncfusion/ej2-react-buttons';
+import { toast, Toaster } from "react-hot-toast";
 
 
 
@@ -31,9 +15,9 @@ function Orders() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedItems, setSelectedItems] = useState([]);
 
-  const handleSearch = (e) => {
-    setSearchQuery(e.target.value);
-  };
+
+
+  
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const token = localStorage.getItem("token");
@@ -150,7 +134,13 @@ function Orders() {
         }
       )
       .then((response) => {
-     
+        if (response.status === 200) {
+          toast.success('User(s) unsubscribed successfully', {
+            position: 'top-right',
+            duration: 10000
+          });
+        }
+       
         axios
           .get(
             `https://www.globalpayng.com/new-admin/v1/settlement/?subscribed=true`,
@@ -211,6 +201,19 @@ function Orders() {
     });
   };
 
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+
+  const filteredData = data
+  ? data.filter(
+      (item) =>
+        item.fullname.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.username.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.walletid.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+  : [];
 
 
 
@@ -222,7 +225,11 @@ function Orders() {
 
   >
     <Header category="Suscribed Users" title="Auto Settlement" />
-
+      <div className="  flex justify-end items-center w-full">
+        <input placeholder="search" className="border-none focus:outline-none focus:shadow-outline border-b-2 border border-pink-500 p-2" type="text" value={searchQuery} onChange={handleSearch} name="" id="" />
+     
+      </div>
+      
 
     <div className="overflow-x-scroll" style={{ overflowX: "auto" }}>
  
@@ -245,7 +252,7 @@ function Orders() {
           </tr>
         </thead>
         <tbody className="text-xs items-center text-center justify-center mx-auto">
-          {data && data.map(item => (
+        {filteredData.map(item => ( 
             <tr key={item.walletid}>
                             <td className="py-2 px-4 border-b">
                 <input
@@ -281,6 +288,7 @@ function Orders() {
         </button>
         
       </div>
+      <Toaster position="top-right" />
   </div>
   );
 }

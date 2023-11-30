@@ -499,12 +499,12 @@ export const links = [
     title: 'Settlement Page',
     links: [
       {
-        name: 'subscribed users',
+        name: 'suscribed users',
         icon: <BsSpeedometer2 />,
       },
 
       {
-        name: 'unsubscribed users',
+        name: 'unsuscribed users',
         icon: <MdList />,
       },
     ],
