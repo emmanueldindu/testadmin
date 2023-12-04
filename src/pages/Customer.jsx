@@ -74,128 +74,56 @@ function Orders() {
     {
       field: "card_holder_name",
       headerText: "Card Holder",
-      textAlign: "Center",
+      textAlign: "Left",
       width: "250",
     },
 
     {
       field: "email",
       headerText: "Email",
-      textAlign: "Center",
+      textAlign: "Start",
       width: "250",
     },
     {
       field: "tid",
       headerText: "Terminal Id",
-      textAlign: "Center",
+      textAlign: "Left",
       width: "150",
     },
     {
       field: "transactiontype",
       headerText: "Transaction Type",
-      textAlign: "Center",
+      textAlign: "Left",
       width: "200",
     },
     {
         field: "stan",
         headerText: "Stan",
-        textAlign: "Center",
+        textAlign: "Left",
         width: "100",
       },
     {
       field: "rrn",
       headerText: "RRN",
-      textAlign: "Center",
+      textAlign: "Left",
       width: "150",
+    },
+    {
+      field: "responsecode",
+      headerText: "Response code",
+      textAlign: "Left",
+      width: "120",
     },
     {
       field: "time",
       headerText: "Time",
-      textAlign: "Center",
+      textAlign: "Left",
       width: "250",
     },
 
   ]
 
 
-  //   {
-  //     field: "current_date_uzoezi",
-  //     headerText: "Current Date",
-  //     textAlign: "Center",
-  //     width: "200",
-  //   },
-  //   {
-  //     field: "date",
-  //     headerText: "Date",
-  //     textAlign: "Center",
-  //     width: "200",
-  //   },
-  //   {
-  //     field: "google_map_radio_type",
-  //     headerText: "Google Map Radio Type",
-  //     textAlign: "Center",
-  //     width: "200",
-  //   },
-  //   {
-  //     field: "has_battery",
-  //     headerText: "Has Battery",
-  //     textAlign: "Center",
-  //     width: "150",
-  //   },
-  //   {
-  //     field: "last_transaction_attempt_time",
-  //     headerText: "Last Transaction Time",
-  //     textAlign: "Center",
-  //     width: "200",
-  //   },
-  //   {
-  //     field: "merchant_id",
-  //     headerText: "Merchant Id",
-  //     textAlign: "Center",
-  //     width: "150",
-  //   },
-  //   {
-  //     field: "pinpad_status",
-  //     headerText: "Pinpad Status",
-  //     textAlign: "Center",
-  //     width: "150",
-  //   },
-  //   {
-  //     field: "printer_state",
-  //     headerText: "Printer State",
-  //     textAlign: "Center",
-  //     width: "150",
-  //   },
-  //   {
-  //     field: "processed_pads",
-  //     headerText: "Processed Pads",
-  //     textAlign: "Center",
-  //     width: "300",
-  //   },
-  //   {
-  //     field: "serial_number",
-  //     headerText: "Serial Number",
-  //     textAlign: "Center",
-  //     width: "150",
-  //   },
-  //   {
-  //     field: "terminal_id",
-  //     headerText: "Terminal",
-  //     textAlign: "Center",
-  //     width: "150",
-  //   },
-  //   {
-  //     field: "terminal_manufacturer",
-  //     headerText: "Terminal Manufacturer",
-  //     textAlign: "Center",
-  //     width: "150",
-  //   },
-  //   {
-  //     field: "terminal_model_name",
-  //     headerText: "Terminal Model Number",
-  //     textAlign: "Center",
-  //     width: "150",
-  //   },
  
   return (
     <div
@@ -210,6 +138,13 @@ function Orders() {
 
       {/* <button  className="h-6 bg-red-500 w-7"onClick={exportToExcel}>Export to Excel</button> */}
       {/* <button className='w-[120px] h-3 bg-yellow-500' onClick={exportToPDF}>Export to PDF</button> */}
+   
+      <div className='w-[150px] gap-x-2 flex justify-between relative p-2'>
+  <button className='w-12 h-8 text-sm rounded-md bg-blue-400 text-white' onClick={exportToPDF}>PDF</button>
+  <button className='w-12 h-8 rounded-md text-sm bg-blue-400 text-white' onClick={exportToExcel}> Excel</button>
+  <button  className='w-12 h-8 rounded-md text-sm bg-blue-400 text-white' onClick={printTable}>Print</button>
+      </div>
+   
       <div className="overflow-x-scroll" style={{ overflowX: "auto" }}>
         <GridComponent
           toolbar={["Search"]}
