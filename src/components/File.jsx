@@ -67,7 +67,7 @@ const FileUploader = () => {
       >
         <input {...getInputProps()} />
         <p className="text-gray-600 my-auto relative mt-[30px] lg:mt-[50px] mx-auto">
-          Drag and drop your Excel file
+          Drag and drop your Excel file..
         </p>
       </div>
 

@@ -26,8 +26,8 @@ const Ecommerce = () => {
             </div>
             <FileUploader />
 
-            <div className="mt-[100px]">
-            <p>browse File to Upload</p>
+            <div className="mt-[70px] justify-center">
+            <p className="text-lg font-semibold ">Browse an excel file to upload, should not be more than 15kb </p>
 
             </div>
             
