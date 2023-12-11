@@ -193,7 +193,7 @@ const last30DaysDates = getLast30Days();
             
 
             <button
-              className=" w-[60px]   md:w-[80px] pb-2 h-[30px] text-sm rounded-xl bg-gray-400 text-white"
+              className=" w-[60px]   md:w-[80px] my-auto  h-[30px] text-sm mt-2 rounded-lg bg-gray-400 text-white"
               onClick={handleApplyClick}> Apply </button>
         </div>
         </div>

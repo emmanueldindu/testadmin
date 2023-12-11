@@ -49,6 +49,26 @@ function Orders() {
 
 
   useEffect(() => {
+    // Make an initial API call when the component mounts
+    const initialApiUrl = 'https://www.globalpayng.com/new-admin/v1/transactions/eod';
+  
+    axios
+      .get(initialApiUrl, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        const initialTable = response.data.data;
+        console.log(initialTable);
+        setState(initialTable);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [token]);
+
+  useEffect(() => {
     if (selectedDateRange) {
       const apiUrl =
         `https://www.globalpayng.com/new-admin/v1/transactions/eod?start_date=${selectedDateRange.startDate}&end_date=${selectedDateRange.endDate}`
@@ -70,6 +90,10 @@ function Orders() {
     
     }
   }, [selectedDateRange, token]);
+
+
+
+
 
   const tableGrid = [
     {
@@ -153,7 +177,7 @@ function Orders() {
         />
       </div>
       
-      
+
       <div className='w-[150px] gap-x-2 flex justify-between relative p-2'>
   <button className='w-12 h-8 text-sm rounded-md bg-blue-400 text-white' onClick={exportToPDF}>PDF</button>
   <button className='w-12 h-8 rounded-md text-sm bg-blue-400 text-white' onClick={exportToExcel}> Excel</button>
