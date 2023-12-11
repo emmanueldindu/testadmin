@@ -17,7 +17,7 @@ import {
 } from "@syncfusion/ej2-react-grids";
 // import { ordersData, ordersGrid } from "../data/dummy";
 import "@syncfusion/ej2-react-grids/styles/material.css";
-
+import DateRange from '../components/DateRange';
 import "jspdf-autotable";
 import axios from "axios";
 
@@ -49,26 +49,27 @@ function Orders() {
 
 
   useEffect(() => {
-   
-    const apiUrl =
-      'https://www.globalpayng.com/new-admin/v1/transactions/eod'
+    if (selectedDateRange) {
+      const apiUrl =
+        `https://www.globalpayng.com/new-admin/v1/transactions/eod?start_date=${selectedDateRange.startDate}&end_date=${selectedDateRange.endDate}`
 
-    axios
-      .get(apiUrl, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        const table = response.data.data
-        console.log(table);
-        setState(table)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      axios
+        .get(apiUrl, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          const table = response.data.data
+          console.log(table);
+          setState(table)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     
-  }, [token]);
+    }
+  }, [selectedDateRange, token]);
 
   const tableGrid = [
     {
@@ -97,6 +98,12 @@ function Orders() {
       width: "200",
     },
     {
+      field: "amount",
+      headerText: "Amount",
+      textAlign: "Left",
+      width: "150",
+    },
+    {
         field: "stan",
         headerText: "Stan",
         textAlign: "Left",
@@ -111,7 +118,7 @@ function Orders() {
     {
       field: "responsecode",
       headerText: "Response code",
-      textAlign: "Left",
+      textAlign: "Center",
       width: "120",
     },
     {
@@ -139,6 +146,14 @@ function Orders() {
       {/* <button  className="h-6 bg-red-500 w-7"onClick={exportToExcel}>Export to Excel</button> */}
       {/* <button className='w-[120px] h-3 bg-yellow-500' onClick={exportToPDF}>Export to PDF</button> */}
    
+      <div className="mx-auto p-4">
+        <DateRange 
+          selectedDateRange={selectedDateRange}
+          onDateRangeChange={handleDateRangeChange}
+        />
+      </div>
+      
+      
       <div className='w-[150px] gap-x-2 flex justify-between relative p-2'>
   <button className='w-12 h-8 text-sm rounded-md bg-blue-400 text-white' onClick={exportToPDF}>PDF</button>
   <button className='w-12 h-8 rounded-md text-sm bg-blue-400 text-white' onClick={exportToExcel}> Excel</button>
